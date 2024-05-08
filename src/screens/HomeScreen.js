@@ -1,5 +1,5 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, { useState } from 'react';
+import {Image, StyleSheet, Text, TouchableOpacity, View ,Keyboard} from 'react-native';
+import React, { useEffect, useState } from 'react';
 import Header from '../comman/Header';
 import Home from './tabs/Home';
 import Search from './tabs/Search';
@@ -10,6 +10,22 @@ import User from './tabs/User';
 const HomeScreen = () => {
 
     const[selectedTab,setSelectedTab] = useState(0)
+    const [isKeyboardVisible, setIsKeyBoardVisible] = useState(false)
+  // call out
+    useEffect(()=>{
+      const KeyboardDidShowListener = Keyboard.addListener(
+        'keyboardDidShow',
+        ()=>{
+          setIsKeyBoardVisible(true)
+        }
+      )
+      const keyboardDidhideListener = Keyboard.addListener(
+        'keyboardDidHide',
+        ()=>{
+          setIsKeyBoardVisible(false)
+        }
+      )
+    },[])
 
   return (
     <>
@@ -23,7 +39,8 @@ const HomeScreen = () => {
             (<User/>)
         }
 
-      <View style={styles.bottomView}>
+      {!isKeyboardVisible?(
+        <View style={styles.bottomView}>
         <TouchableOpacity style={styles.bottomTab} onPress={()=>setSelectedTab(0)}>
           <Image
             source={selectedTab==0?require('../images/homeB.png'):require('../images/homeW.png')}
@@ -55,6 +72,7 @@ const HomeScreen = () => {
           />
         </TouchableOpacity>
       </View>
+      ):null}
     </>
   );
 };

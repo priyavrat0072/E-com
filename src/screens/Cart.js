@@ -1,12 +1,12 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
-import Header from '../../comman/Header';
+import Header from '../comman/Header';
 import { FlatList } from 'react-native';
 import {Dimensions} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-const Wishlist = () => {
+const Cart = () => {
   const items = useSelector(state => state.wishList);
   const [wishListItems, setWishListItems] = useState(items.data);
   console.log('hello');
@@ -14,7 +14,7 @@ const Wishlist = () => {
   const navigation = useNavigation();
   return (
     <View style={styles.cointainer}>
-      <Header title={'Cart Item'} />
+      <Header title={'Cart Items'} />
       <FlatList
         data={wishListItems}
         renderItem={({item, index}) => {
@@ -48,7 +48,7 @@ const Wishlist = () => {
   );
 };
 
-export default Wishlist;
+export default Cart;
 
 const styles = StyleSheet.create({
   cointainer: {
