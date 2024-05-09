@@ -39,6 +39,7 @@ const Home = () => {
           rightIcon={require('../../images/cart.png')}
           title={'Grocery App'}
           onClickLeftIcon={()=>navigation.openDrawer()}
+          isCart={true}
           />
           <FlatList 
           data={products}

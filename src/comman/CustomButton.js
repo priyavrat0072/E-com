@@ -5,7 +5,7 @@ const CustomButton = ({bg,title,onClick,color}) => {
   return (
     <TouchableOpacity
      style={[styles.btn,{backgroundColor:bg}]}
-     activeOpacity={1}
+    //  activeOpacity={1}
      onPress={()=>{onClick()}}
      >
         <Text style={[styles.titletxt,{color:color}]}>{title}</Text>
