@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     btn:{
         width:Dimensions.get('window').width-40,
         height:50,
-        marginBottom:100,
+        marginBottom:20,
         alignSelf:'center',
         borderRadius:10,
         marginTop:5
