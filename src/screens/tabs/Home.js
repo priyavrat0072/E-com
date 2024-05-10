@@ -23,6 +23,8 @@ const Home = () => {
             .then(res=>res.json())
             .then(json=>{
               setProducts(json)
+              // console.log('hello')
+              // console.log(json)
               json.map(item=>{
                 item.qty = 1
               })

@@ -6,6 +6,7 @@ import { FlatList } from 'react-native';
 import {Dimensions} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import { addItemToCart, reduceItemFromCart, removeItemFromCart } from '../redux/slices/CartSlice';
+import CheckoutLayout from '../comman/CheckoutLayout';
 
 const Cart = () => {
   const items = useSelector(state => state.cart);
@@ -17,6 +18,16 @@ const Cart = () => {
         setCartItems(items.data)
     },[items])
   const navigation = useNavigation();
+
+  const getTotal=()=>{
+    let total = 0
+    cartItems.map((item)=>{
+      total = total+(item.qty*item.price)
+    })
+    return total.toFixed(2)
+  }
+
+
   return (
     <View style={styles.cointainer}>
       <Header title={'Cart Items'}
@@ -68,6 +79,19 @@ const Cart = () => {
           );
         }}
       />
+      {
+        (cartItems.length < 1)?(
+          <View style={styles.noItem}>
+            <Text>No Items In Cart</Text>
+          </View>
+        ):null 
+      }
+      {
+        (cartItems.length > 0)?(
+          <CheckoutLayout items={cartItems.length} total={getTotal()}/>
+        ):null 
+      }
+      
     </View>
   );
 };
@@ -85,6 +109,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     flexDirection: 'row',
     alignItems: 'center',
+    padding:5,
   },
   itemImage: {
     width: 100,
@@ -126,5 +151,11 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'center',
     fontSize:18
+  },
+  noItem:{
+    width:'100%',
+    height:'100%',
+    alignItems:'center',
+    justifyContent:'center'
   }
 });

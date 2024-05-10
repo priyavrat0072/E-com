@@ -96,22 +96,27 @@ const ProductDetail = () => {
           title={'Add to Cart'}
           color={'#000099'}
           onClick={() => {
-           
-            if (checkUserStatus() === true){
-              dispatch(addItemToCart({...route.params.data,qty:qty}));
-            }
-            else{
-              setModalVisible(true)
-            }
+            dispatch(addItemToCart({...route.params.data,qty:qty}));
+            // for login use
+            // if (checkUserStatus() === true){
+            //   dispatch(addItemToCart({...route.params.data,qty:qty}));
+            // }
+            // else{
+            //   setModalVisible(true)
+            // }
             
            //complete json object(V3:37) 
           }}
         />
       </ScrollView>
-      <AskForLoginModal 
+      {/* for Login User */}
+      {/* <AskForLoginModal 
         modalVisible={modalVisible}
 
-        onClose={()=>{setModalVisible(false)}}
+        onClose={()=>{
+          setModalVisible(false)
+          
+        }}
 
         onClickLogin={()=>{
           setModalVisible(false)
@@ -122,7 +127,7 @@ const ProductDetail = () => {
           setModalVisible(false)
           navigation.navigate('SignUp')
         }}
-      />
+      /> */}
     </View>
   );
 };
