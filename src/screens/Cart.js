@@ -29,6 +29,7 @@ const Cart = () => {
 
 
   return (
+    // ScrollView not implementing
     <View style={styles.cointainer}>
       <Header title={'Cart Items'}
         
